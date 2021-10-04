@@ -12,24 +12,28 @@ router.get("/", async (req, res) => {
 
 router.get("/random/", async (req, res) => {
 	let query = {};
-	if (req.query.colorId)
-		query = { ...query, ...parser.parseColorId(req.query.colorId) }; //pour colorId= et enlever les embleme de la bdd
-	if (req.query.type)
-		query = { ...query, ...parser.parseType(req.query.type) };
-	if (req.query.cmc)
-		query = { ...query, ...parser.parseCmc(req.query.cmc) };
-	if (req.query.edhr)
-		query = { ...query, ...parser.parseEdhrecRank(req.query.edhr) };
-	console.log(query);
-	Cards.findRandom(
-		query,
-		{},
-		{ limit: req.query.limit },
-		function (err, result) {
-			if (err) throw err;
-			res.send(result);
-		}
-	);
+	try {
+		if (req.query.colorId)
+			query = { ...query, ...parser.parseColorId(req.query.colorId) };
+		if (req.query.type)
+			query = { ...query, ...parser.parseType(req.query.type) };
+		if (req.query.cmc)
+			query = { ...query, ...parser.parseCmc(req.query.cmc) };
+		if (req.query.edhr)
+			query = { ...query, ...parser.parseEdhrecRank(req.query.edhr) };
+		Cards.findRandom(
+			query,
+			{},
+			{ limit: req.query.limit },
+			function (err, result) {
+				if (err) throw err;
+				res.send(result);
+			}
+		);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ error: "Something went wrong" });
+	}
 });
 
 router.patch("/pick/:id", async (req, res) => {

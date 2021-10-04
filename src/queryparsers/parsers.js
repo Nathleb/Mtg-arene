@@ -139,8 +139,4 @@ module.exports = {
 		}
 		return query;
 	},
-
-	// parsePickrate: function (pickrate) {
-
-	// },
 };

@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "babel-node src/index.js",
-    "dev": "nodemon --exec babel-node src/index.js",
-    "build": "babel src -d lib"
+    "server": "nodemon --exec babel-node src/index.js",
+    "build": "babel src -d lib",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
