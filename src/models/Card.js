@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 var random = require("mongoose-simple-random");
 
 const cardSchema = new mongoose.Schema({
-	_id: mongoose.ObjectId,
+	_id: {
+		$oid: {
+			type: "ObjectId",
+		},
+	},
 	object: {
 		type: "String",
 	},
@@ -11,29 +15,6 @@ const cardSchema = new mongoose.Schema({
 	},
 	oracle_id: {
 		type: "String",
-	},
-	multiverse_ids: {
-		type: ["Mixed"],
-	},
-	mtgo_id: {
-		$numberInt: {
-			type: "String",
-		},
-	},
-	mtgo_foil_id: {
-		$numberInt: {
-			type: "String",
-		},
-	},
-	tcgplayer_id: {
-		$numberInt: {
-			type: "Date",
-		},
-	},
-	cardmarket_id: {
-		$numberInt: {
-			type: "Date",
-		},
 	},
 	name: {
 		type: "String",
@@ -102,86 +83,6 @@ const cardSchema = new mongoose.Schema({
 	keywords: {
 		type: "Array",
 	},
-	legalities: {
-		standard: {
-			type: "String",
-		},
-		future: {
-			type: "String",
-		},
-		historic: {
-			type: "String",
-		},
-		gladiator: {
-			type: "String",
-		},
-		pioneer: {
-			type: "String",
-		},
-		modern: {
-			type: "String",
-		},
-		legacy: {
-			type: "String",
-		},
-		pauper: {
-			type: "String",
-		},
-		vintage: {
-			type: "String",
-		},
-		penny: {
-			type: "String",
-		},
-		commander: {
-			type: "String",
-		},
-		brawl: {
-			type: "String",
-		},
-		historicbrawl: {
-			type: "String",
-		},
-		paupercommander: {
-			type: "String",
-		},
-		duel: {
-			type: "String",
-		},
-		oldschool: {
-			type: "String",
-		},
-		premodern: {
-			type: "String",
-		},
-	},
-	games: {
-		type: ["String"],
-	},
-	reserved: {
-		type: "Boolean",
-	},
-	foil: {
-		type: "Boolean",
-	},
-	nonfoil: {
-		type: "Boolean",
-	},
-	finishes: {
-		type: ["String"],
-	},
-	oversized: {
-		type: "Boolean",
-	},
-	promo: {
-		type: "Boolean",
-	},
-	reprint: {
-		type: "Boolean",
-	},
-	variation: {
-		type: "Boolean",
-	},
 	set_id: {
 		type: "String",
 	},
@@ -194,15 +95,6 @@ const cardSchema = new mongoose.Schema({
 	set_type: {
 		type: "String",
 	},
-	set_uri: {
-		type: "String",
-	},
-	set_search_uri: {
-		type: "String",
-	},
-	scryfall_set_uri: {
-		type: "String",
-	},
 	rulings_uri: {
 		type: "String",
 	},
@@ -212,16 +104,10 @@ const cardSchema = new mongoose.Schema({
 	collector_number: {
 		type: "String",
 	},
-	digital: {
-		type: "Boolean",
-	},
 	rarity: {
 		type: "String",
 	},
 	flavor_text: {
-		type: "String",
-	},
-	card_back_id: {
 		type: "String",
 	},
 	artist: {
@@ -233,47 +119,15 @@ const cardSchema = new mongoose.Schema({
 	illustration_id: {
 		type: "String",
 	},
-	border_color: {
-		type: "String",
-	},
 	frame: {
 		type: "Date",
 	},
-	full_art: {
-		type: "Boolean",
-	},
-	textless: {
-		type: "Boolean",
-	},
 	booster: {
-		type: "Boolean",
-	},
-	story_spotlight: {
 		type: "Boolean",
 	},
 	edhrec_rank: {
 		$numberInt: {
 			type: "Date",
-		},
-	},
-	prices: {
-		usd: {
-			type: "String",
-		},
-		usd_foil: {
-			type: "String",
-		},
-		usd_etched: {
-			type: "Mixed",
-		},
-		eur: {
-			type: "String",
-		},
-		eur_foil: {
-			type: "String",
-		},
-		tix: {
-			type: "String",
 		},
 	},
 	related_uris: {
@@ -293,8 +147,16 @@ const cardSchema = new mongoose.Schema({
 			type: "String",
 		},
 	},
-	total_picked: "Number",
-	total_proposed: "Number",
+	total_picked: {
+		$numberInt: {
+			type: "String",
+		},
+	},
+	total_proposed: {
+		$numberInt: {
+			type: "String",
+		},
+	},
 });
 
 cardSchema.plugin(random);

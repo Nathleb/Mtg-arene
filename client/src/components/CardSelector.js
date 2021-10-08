@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 
 const Card = (props) => (
-	<img src={props.card.image_uris.png} alt={"image" + props.card.name}></img> //png?normal?
+	<div className="col-md-2">
+		<img
+			src={"data:image/png;base64," + props.card.img}
+			alt={"image :" + props.card.name + " : " + props.card.img}
+			className="img-thumbnail"
+		></img>
+	</div>
 );
 
 class CardSelector extends Component {
@@ -16,12 +22,14 @@ class CardSelector extends Component {
 	componentDidMount() {
 		axios
 			.get(
-				"http://localhost:5000/api/v1/cards/random/?limit=3&type=Legendary"
+				"http://localhost:5000/api/v1/cards/random/?limit=10&type=Legendary"
 			)
 			.then((result) => {
 				this.setState({ cards: result.data });
+			})
+			.catch((err) => {
+				throw err;
 			});
-		console.log(this.state);
 	}
 	CardSelector() {
 		return this.state.cards.map((currentcard) => {
@@ -33,7 +41,7 @@ class CardSelector extends Component {
 		return (
 			<div>
 				<h3>Pick 1</h3>
-				{this.CardSelector()}
+				<div className="row">{this.CardSelector()}</div>
 			</div>
 		);
 	}

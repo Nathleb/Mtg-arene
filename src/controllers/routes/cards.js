@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/random/", async (req, res) => {
-	let query = {};
+	let query = { img: { $exist: 1 } };
 	try {
 		if (req.query.colorId)
 			query = { ...query, ...parser.parseColorId(req.query.colorId) };
