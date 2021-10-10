@@ -3,15 +3,8 @@ const router = express.Router();
 const Cards = require("../../models/Card.js");
 const parser = require("../../queryparsers/parsers.js");
 
-router.get("/", async (req, res) => {
-	Cards.findById(req.query.id, (err, result) => {
-		if (err) throw err;
-		res.send(result);
-	});
-});
-
 router.get("/random/", async (req, res) => {
-	let query = { img: { $exist: 1 } };
+	let query = { img: { $ne: null } };
 	try {
 		if (req.query.colorId)
 			query = { ...query, ...parser.parseColorId(req.query.colorId) };
@@ -27,6 +20,7 @@ router.get("/random/", async (req, res) => {
 			{ limit: req.query.limit },
 			function (err, result) {
 				if (err) throw err;
+				console.log(result.length);
 				res.send(result);
 			}
 		);

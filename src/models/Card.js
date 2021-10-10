@@ -1,10 +1,52 @@
 const mongoose = require("mongoose");
 var random = require("mongoose-simple-random");
+mongoose.set("debug", true);
 
 const cardSchema = new mongoose.Schema({
 	_id: {
-		$oid: {
-			type: "ObjectId",
+		type: "ObjectId",
+	},
+	image_uris: {
+		small: {
+			type: "String",
+		},
+		normal: {
+			type: "String",
+		},
+		large: {
+			type: "String",
+		},
+		png: {
+			type: "String",
+		},
+		art_crop: {
+			type: "String",
+		},
+		border_crop: {
+			type: "String",
+		},
+	},
+	cmc: {
+		type: "Number",
+	},
+	edhrec_rank: {
+		type: "Number",
+	},
+	related_uris: {
+		gatherer: {
+			type: "String",
+		},
+		tcgplayer_infinite_articles: {
+			type: "String",
+		},
+		tcgplayer_infinite_decks: {
+			type: "String",
+		},
+		edhrec: {
+			type: "String",
+		},
+		mtgtop8: {
+			type: "String",
 		},
 	},
 	object: {
@@ -15,6 +57,18 @@ const cardSchema = new mongoose.Schema({
 	},
 	oracle_id: {
 		type: "String",
+	},
+	multiverse_ids: {
+		type: ["Number"],
+	},
+	mtgo_id: {
+		type: "Number",
+	},
+	tcgplayer_id: {
+		type: "Number",
+	},
+	cardmarket_id: {
+		type: "Number",
 	},
 	name: {
 		type: "String",
@@ -40,33 +94,8 @@ const cardSchema = new mongoose.Schema({
 	image_status: {
 		type: "String",
 	},
-	image_uris: {
-		small: {
-			type: "String",
-		},
-		normal: {
-			type: "String",
-		},
-		large: {
-			type: "String",
-		},
-		png: {
-			type: "String",
-		},
-		art_crop: {
-			type: "String",
-		},
-		border_crop: {
-			type: "String",
-		},
-	},
 	mana_cost: {
 		type: "String",
-	},
-	cmc: {
-		$numberDouble: {
-			type: "String",
-		},
 	},
 	type_line: {
 		type: "String",
@@ -78,10 +107,93 @@ const cardSchema = new mongoose.Schema({
 		type: "Array",
 	},
 	color_identity: {
-		type: "Array",
+		type: ["Array"],
 	},
 	keywords: {
 		type: "Array",
+	},
+	produced_mana: {
+		type: ["String"],
+	},
+	legalities: {
+		standard: {
+			type: "String",
+		},
+		future: {
+			type: "String",
+		},
+		historic: {
+			type: "String",
+		},
+		gladiator: {
+			type: "String",
+		},
+		pioneer: {
+			type: "String",
+		},
+		modern: {
+			type: "String",
+		},
+		legacy: {
+			type: "String",
+		},
+		pauper: {
+			type: "String",
+		},
+		vintage: {
+			type: "String",
+		},
+		penny: {
+			type: "String",
+		},
+		commander: {
+			type: "String",
+		},
+		brawl: {
+			type: "String",
+		},
+		historicbrawl: {
+			type: "String",
+		},
+		paupercommander: {
+			type: "String",
+		},
+		duel: {
+			type: "String",
+		},
+		oldschool: {
+			type: "String",
+		},
+		premodern: {
+			type: "String",
+		},
+	},
+	games: {
+		type: ["String"],
+	},
+	reserved: {
+		type: "Boolean",
+	},
+	foil: {
+		type: "Boolean",
+	},
+	nonfoil: {
+		type: "Boolean",
+	},
+	finishes: {
+		type: ["String"],
+	},
+	oversized: {
+		type: "Boolean",
+	},
+	promo: {
+		type: "Boolean",
+	},
+	reprint: {
+		type: "Boolean",
+	},
+	variation: {
+		type: "Boolean",
 	},
 	set_id: {
 		type: "String",
@@ -95,6 +207,15 @@ const cardSchema = new mongoose.Schema({
 	set_type: {
 		type: "String",
 	},
+	set_uri: {
+		type: "String",
+	},
+	set_search_uri: {
+		type: "String",
+	},
+	scryfall_set_uri: {
+		type: "String",
+	},
 	rulings_uri: {
 		type: "String",
 	},
@@ -104,10 +225,16 @@ const cardSchema = new mongoose.Schema({
 	collector_number: {
 		type: "String",
 	},
+	digital: {
+		type: "Boolean",
+	},
 	rarity: {
 		type: "String",
 	},
 	flavor_text: {
+		type: "String",
+	},
+	card_back_id: {
 		type: "String",
 	},
 	artist: {
@@ -119,43 +246,47 @@ const cardSchema = new mongoose.Schema({
 	illustration_id: {
 		type: "String",
 	},
+	border_color: {
+		type: "String",
+	},
 	frame: {
 		type: "Date",
+	},
+	full_art: {
+		type: "Boolean",
+	},
+	textless: {
+		type: "Boolean",
 	},
 	booster: {
 		type: "Boolean",
 	},
-	edhrec_rank: {
-		$numberInt: {
-			type: "Date",
-		},
+	story_spotlight: {
+		type: "Boolean",
 	},
-	related_uris: {
-		gatherer: {
+	prices: {
+		usd: {
 			type: "String",
 		},
-		tcgplayer_infinite_articles: {
+		usd_foil: {
 			type: "String",
 		},
-		tcgplayer_infinite_decks: {
+		usd_etched: {
+			type: "Mixed",
+		},
+		eur: {
 			type: "String",
 		},
-		edhrec: {
+		eur_foil: {
 			type: "String",
 		},
-		mtgtop8: {
-			type: "String",
-		},
-	},
-	total_picked: {
-		$numberInt: {
+		tix: {
 			type: "String",
 		},
 	},
-	total_proposed: {
-		$numberInt: {
-			type: "String",
-		},
+	img: {
+		data: Buffer,
+		contentType: String,
 	},
 });
 
