@@ -1,6 +1,7 @@
 module.exports = {
 	parseColorId: function (colorId) {
 		let query = {};
+		if (!colorId) return { color_identity: { exists: true } };
 		switch (true) {
 			case /^lte/.test(colorId):
 				query = {
@@ -64,6 +65,7 @@ module.exports = {
 	},
 
 	parseType: function (types) {
+		if (!types) return { type_line: { exists: true } };
 		let regexTypesArray = types.split(" ").reduce((acc, cur) => {
 			acc.push(new RegExp(cur, "i"));
 			return acc;
@@ -77,6 +79,7 @@ module.exports = {
 	},
 
 	parseCmc: function (cmc) {
+		if (!cmc) return { cmc: { exists: true } };
 		let query;
 		switch (true) {
 			case /^lte/.test(cmc):
@@ -109,6 +112,7 @@ module.exports = {
 	},
 
 	parseEdhrecRank: function (edhrecRank) {
+		if (!edhrec_rank) return { edhrec_rank: { exists: true } };
 		let query;
 		switch (true) {
 			case /^lte/.test(edhrecRank):

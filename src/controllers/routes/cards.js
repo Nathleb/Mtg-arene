@@ -20,7 +20,6 @@ router.get("/random/", async (req, res) => {
 			{ limit: req.query.limit },
 			function (err, result) {
 				if (err) throw err;
-				console.log(result.length);
 				res.send(result);
 			}
 		);
