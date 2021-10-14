@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class GameModeButton extends Component {
 	constructor(props) {
@@ -10,7 +11,7 @@ export default class GameModeButton extends Component {
 	}
 	render() {
 		return (
-			<button
+			<Link to="/pick"
 				className="card mx-auto"
 				style={{ width: "20rem" }}
 				onClick={() => console.log("clicked")}
@@ -18,9 +19,9 @@ export default class GameModeButton extends Component {
 				<img
 					src={`${process.env.PUBLIC_URL}/assets/${this.state.src}`}
 					alt={this.state.alt}
-					className="img-thumbnail"
+					className="img-fluid"
 				></img>
-			</button>
+			</Link>
 		);
 	}
 }
