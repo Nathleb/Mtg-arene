@@ -46,8 +46,7 @@ router.put("/:id/cardId/:cardId", async (req, res) => {
 router.post("/cardid/:card", async (req, res) => {
 	try {
 		let _id = mongoose.mongo.ObjectId();
-		let timestamp = mongoose.mongo.ObjectId(_id).getTimestamp();
-		console.log(timestamp);
+		
 		CardLists.create(
 			{
 				_id: _id,
@@ -65,9 +64,21 @@ router.post("/cardid/:card", async (req, res) => {
 	}
 });
 
-router.delete("/:id", async (req, res) => {
+// router.delete("/:id", async (req, res) => {
+// 	try {
+// 		CardLists.findByIdAndDelete(req.params.id, (err, model) => {
+// 			if (err) throw err;
+// 			res.send(model);
+// 		});
+// 	} catch (err) {
+// 		console.log(err);
+// 		return res.status(400).json({ error: "Something went wrong" + err });
+// 	}
+// });
+
+router.delete("/all", async (req, res) => {
 	try {
-		CardLists.findByIdAndDelete(req.params.id, (err, model) => {
+		CardLists.deleteMany({}, (err, model) => {
 			if (err) throw err;
 			res.send(model);
 		});

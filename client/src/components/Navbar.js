@@ -12,7 +12,7 @@ export default class Navbar extends Component {
 					<img
 						src={`${process.env.PUBLIC_URL}/assets/logo.png`}
 						alt="logo"
-						width="408"
+						width="406"
 						className="img"
 					></img>
 				</Link>

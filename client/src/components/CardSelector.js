@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 
 const Card = (props) => (
-	<div className="card" style={{ width: "20rem" }}>
-		<img
-			src={"data:image/jpg;base64," + props.card.img}
-			alt={"image : " + props.card.name}
-			className="img-thumbnail"
-		></img>
-	</div>
+	<img
+		src={"data:image/jpg;base64," + props.card.img}
+		alt={"image : " + props.card.name}
+		className="img-fluid responsive zoom"
+	></img>
 );
 
 class CardSelector extends Component {
@@ -27,7 +25,7 @@ class CardSelector extends Component {
 	componentDidMount() {
 		axios
 			.get(
-				`http://localhost:5000/api/v1/cards/random/?limit=${this.props.limit}&type=${this.props.type}&colorId=${this.props.colorId}`
+				`http://localhost:5000/api/v1/cards/random/?limit=${this.props.limit}&type=${this.props.type}&colorId=lte${this.props.colorId}`
 			)
 			.then((result) => {
 				this.setState({ cards: result.data });
@@ -43,11 +41,7 @@ class CardSelector extends Component {
 	}
 
 	render() {
-		return (
-			<div class="d-flex justify-content-center m-5">
-				<div className="row">{this.CardSelector()}</div>
-			</div>
-		);
+		return <div className="row">{this.CardSelector()}</div>;
 	}
 }
 

@@ -10,28 +10,32 @@ function App() {
 	return (
 		<Router>
 			<Navbar />
-			<Route
-				path="/"
-				exact
-				render={(props) => (
-					<GameModeButton
-						{...props}
-						src="commander-arena.jpg"
-						alt="commander arena"
+			<div className="d-flex section align-items-center justify-content-center">
+				<div className="align-items-center justify-content-center d-flex ">
+					<Route
+						path="/"
+						exact
+						render={(props) => (
+							<GameModeButton
+								{...props}
+								src="commander-arena.jpg"
+								alt="commander arena"
+							/>
+						)}
 					/>
-				)}
-			/>
-			<Route
-				path="/pick"
-				render={(props) => (
-					<CardSelector
-						{...props}
-						type="Legendary Creature"
-						colorId=""
-						limit="3"
+					<Route
+						path="/pick"
+						render={(props) => (
+							<CardSelector
+								{...props}
+								type="Legendary Creature"
+								colorId="WURGB"
+								limit="6"
+							/>
+						)}
 					/>
-				)}
-			/>
+				</div>
+			</div>
 		</Router>
 	);
 }

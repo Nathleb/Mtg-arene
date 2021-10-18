@@ -1,0 +1,23 @@
+.responsive {
+	width: 100%;
+	max-width: 200px;
+	height: auto;
+}
+.responsive:hover {
+	transform: scale(
+		1.5
+	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+html,
+body {
+	height: 100%;
+	background-color: #3b393a;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 198px);
+	background-color: #3b393a;
+}

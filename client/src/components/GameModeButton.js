@@ -14,7 +14,6 @@ export default class GameModeButton extends Component {
 			<Link to="/pick"
 				className="card mx-auto"
 				style={{ width: "20rem" }}
-				onClick={() => console.log("clicked")}
 			>
 				<img
 					src={`${process.env.PUBLIC_URL}/assets/${this.state.src}`}
