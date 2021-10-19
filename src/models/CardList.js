@@ -11,6 +11,9 @@ const cardListSchema = new mongoose.Schema({
 	size: {
 		type: "Number",
 	},
+	session_id: {
+		type: "String",
+	},
 });
 
 const CardList = mongoose.model("cardlist", cardListSchema);

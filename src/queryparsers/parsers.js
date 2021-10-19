@@ -6,45 +6,17 @@ module.exports = {
 			case /^lte/.test(colorId):
 				query = {
 					$or: [
-						{ color_identity: { $in: colorId.slice(3).split("") } },
-						{ color_identity: { $size: 0 } },
-					],
-				};
-				break;
-			case /^lt/.test(colorId):
-				query = {
-					$or: [
 						{
 							color_identity: {
-								$in: colorId.slice(2).split(""),
-							},
-							$expr: {
-								$lt: [
-									{ $size: "$color_identity" },
-									colorId.slice(2).split("").length,
-								],
+								$not: {
+									$elemMatch: {
+										$nin: colorId.slice(3).split(""),
+									},
+								},
 							},
 						},
 						{ color_identity: { $size: 0 } },
 					],
-				};
-				break;
-			case /^gte/.test(colorId):
-				query = {
-					color_identity: { $all: colorId.slice(3).split("") },
-				};
-				break;
-			case /^gt/.test(colorId):
-				query = {
-					color_identity: {
-						$all: colorId.slice(2).split(""),
-					},
-					$expr: {
-						$gt: [
-							{ $size: "$color_identity" },
-							colorId.slice(2).split("").length,
-						],
-					},
 				};
 				break;
 			case colorId === "c":
@@ -112,7 +84,7 @@ module.exports = {
 	},
 
 	parseEdhrecRank: function (edhrecRank) {
-		if (!edhrec_rank) return { edhrec_rank: { exists: true } };
+		if (!edhrecRank) return { edhrec_rank: { exists: true } };
 		let query;
 		switch (true) {
 			case /^lte/.test(edhrecRank):

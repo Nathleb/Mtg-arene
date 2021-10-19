@@ -46,7 +46,6 @@ router.put("/:id/cardId/:cardId", async (req, res) => {
 router.post("/cardid/:card", async (req, res) => {
 	try {
 		let _id = mongoose.mongo.ObjectId();
-		
 		CardLists.create(
 			{
 				_id: _id,
