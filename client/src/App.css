@@ -5,13 +5,25 @@
 }
 
 .small-card {
-	width: 150px;
+	width: 120px;
 	height: auto;
-	margin-bottom: -200px;
+	margin-bottom: -150px;
 	object-fit: cover;
 }
-.stack {
+
+.commander-card {
 	width: 150px;
+	height: auto;
+	margin-bottom: -150px;
+	object-fit: cover;
+	border: 4mm ridge #e5d3da;
+}
+
+.commander-stack {
+	width: 150px;
+}
+.stack {
+	width: 120px;
 }
 
 html,
@@ -33,6 +45,7 @@ body {
 	height: 100%;
 	max-width: 80vw;
 	background-color: #3b393a;
+	color: #e5d3da;
 }
 
 .mytooltip {

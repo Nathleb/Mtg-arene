@@ -16,7 +16,15 @@ router.get("/random/", async (req, res) => {
 			query = { ...query, ...parser.parseEdhrecRank(req.query.edhr) };
 		Cards.findRandom(
 			query,
-			{},
+			{
+				_id: 1,
+				name: 1,
+				img: 1,
+				cmc: 1,
+				color_identity: 1,
+				edhrec_rank: 1,
+				type_line: 1,
+			},
 			{ limit: req.query.limit },
 			function (err, result) {
 				if (err) throw err;

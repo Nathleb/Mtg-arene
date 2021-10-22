@@ -29,7 +29,7 @@ function App() {
 							{...props}
 							type="Legendary Creature"
 							colorId="WURGB"
-							limit="3"
+							limit="4"
 						/>
 					)}
 				/>
