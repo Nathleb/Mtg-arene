@@ -10,32 +10,30 @@ function App() {
 	return (
 		<Router>
 			<Navbar />
-			<div className="d-flex section align-items-center justify-content-center">
-				<div className="align-items-center justify-content-center d-flex ">
-					<Route
-						path="/"
-						exact
-						render={(props) => (
-							<GameModeButton
-								{...props}
-								src="commander-arena.jpg"
-								alt="commander arena"
-							/>
-						)}
-					/>
-					<Route
-						path="/pick"
-						render={(props) => (
-							<CardSelector
-								{...props}
-								type="Legendary Creature"
-								colorId="WURGB"
-								limit="6"
-							/>
-						)}
-					/>
-				</div>
-			</div>
+			<main className=" main align-items-center justify-content-center">
+				<Route
+					path="/"
+					exact
+					render={(props) => (
+						<GameModeButton
+							{...props}
+							src="commander-arena.jpg"
+							alt="commander arena"
+						/>
+					)}
+				/>
+				<Route
+					path="/pick"
+					render={(props) => (
+						<CardSelector
+							{...props}
+							type="Legendary Creature"
+							colorId="WURGB"
+							limit="3"
+						/>
+					)}
+				/>
+			</main>
 		</Router>
 	);
 }

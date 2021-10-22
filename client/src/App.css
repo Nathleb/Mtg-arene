@@ -1,12 +1,17 @@
-.responsive {
+.big-card {
 	width: 100%;
 	max-width: 200px;
 	height: auto;
 }
-.responsive:hover {
-	transform: scale(
-		1.75
-	); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+
+.small-card {
+	width: 150px;
+	height: auto;
+	margin-bottom: -200px;
+	object-fit: cover;
+}
+.stack {
+	width: 150px;
 }
 
 html,
@@ -15,9 +20,49 @@ body {
 	background-color: #3b393a;
 }
 
+.main {
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh - 198px);
+	background-color: #3b393a;
+}
+
 .section {
 	display: flex;
 	flex-direction: column;
-	height: calc(100vh - 198px);
+	height: 100%;
+	max-width: 80vw;
 	background-color: #3b393a;
+}
+
+.mytooltip {
+	display: inline;
+	position: relative;
+	overflow: auto;
+}
+
+.mytooltip .tooltip-content {
+	position: absolute;
+	z-index: 9999;
+	bottom: -600%;
+	left: 100%;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.mytooltip .tooltip-content::after {
+	content: "";
+	position: absolute;
+	pointer-events: none;
+}
+
+.mytooltip .tooltip-content img {
+	position: relative;
+	height: 400px;
+	display: block;
+	float: left;
+}
+
+.mytooltip:hover .tooltip-content {
+	opacity: 1;
 }
