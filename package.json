@@ -6,8 +6,9 @@
   "scripts": {
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
-    "build": "npm run clean && npm run build-babel",
+    "build-server": "npm run clean && npm run build-babel",
     "build-client": "npm run build --prefix client",
+    "build": "concurrently \"npm run build-server\" \"npm run build-client\"",
     "client-install": "npm install --prefix client",
     "heroku-postbuild": "npm run client-install && npm run build-client",
     "start": "node ./build/index.js",
