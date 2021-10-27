@@ -84,7 +84,7 @@ module.exports = {
 	},
 
 	parseEdhrecRank: function (edhrecRank) {
-		if (!edhrecRank) return { edhrec_rank: { exists: true } };
+		if (!edhrecRank) return {};
 		let query;
 		switch (true) {
 			case /^lte/.test(edhrecRank):
