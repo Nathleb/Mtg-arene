@@ -9,7 +9,6 @@ class CardSelector extends Component {
 			type: props.type,
 			colorId: props.colorId,
 			cmc: props.cmc,
-			edhrec: "5000",
 			limit: parseInt(props.limit, 10),
 			pick: "Commander",
 			commander: [],
@@ -24,7 +23,7 @@ class CardSelector extends Component {
 		this._isMounted = true;
 		axios
 			.get(
-				`http://localhost:5000/api/v1/cards/random/?limit=${this.state.limit}&type=${this.state.type}&colorId=lte${this.state.colorId}&edhr=lte5000`
+				`http://localhost:5000/api/v1/cards/random/?limit=${this.state.limit}&type=${this.state.type}&colorId=lte${this.state.colorId}`
 			)
 			.then((result) => {
 				this.setState({ cards: result.data });
@@ -55,6 +54,9 @@ class CardSelector extends Component {
 						return a.cmc - b.cmc;
 					});
 				updatedList[cmc].sort((a, b) => {
+					return a.name.localeCompare(b.name);
+				});
+				updatedList[cmc].sort((a, b) => {
 					return a.color_identity
 						.join("")
 						.localeCompare(b.color_identity.join(""));
@@ -68,7 +70,7 @@ class CardSelector extends Component {
 				if (this.state.pick < 31) {
 					axios
 						.get(
-							`http://localhost:5000/api/v1/cards/random/?limit=${this.state.limit}&colorId=lte${this.state.colorId}&edhr=lte5000`
+							`http://localhost:5000/api/v1/cards/random/?limit=${this.state.limit}&colorId=lte${this.state.colorId}`
 						)
 						.then((result) => {
 							this.setState({ enabled: true });

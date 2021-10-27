@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "client-install": "npm install --prefix client",
-    "start": "babel-node src/index.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon --exec babel-node src/index.js",
     "build": "babel src -d lib",
     "client": "npm start --prefix client",
@@ -32,5 +32,8 @@
     "@babel/node": "^7.14.9",
     "@babel/preset-env": "^7.15.0",
     "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "14.18.1"
   }
 }

@@ -18,7 +18,7 @@ function App() {
 						<GameModeButton
 							{...props}
 							src="commander-arena.jpg"
-							alt="commander arena"
+							alt="ravnica"
 						/>
 					)}
 				/>
