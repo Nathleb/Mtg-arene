@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf build && mkdir build",
     "client-install": "npm install --prefix client",
-    "build": "cd client && npm run build",
+    "build-babel": "babel -d ./build ./src -s",
     "heroku-postbuild": "npm run client-install && npm run build",
-    "start": "babel-node src/index.js",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/index.js",
     "server": "nodemon --exec babel-node src/index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
