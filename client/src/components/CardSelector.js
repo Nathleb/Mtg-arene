@@ -23,7 +23,7 @@ class CardSelector extends Component {
 		this._isMounted = true;
 		axios
 			.get(
-				`${window.location.host}/api/v1/cards/random/?limit=${this.state.limit}&type=${this.state.type}&colorId=lte${this.state.colorId}`
+				`https://mtgpickr.herokuapp.com/api/v1/cards/random?limit=${this.state.limit}&type=${this.state.type}&colorId=lte${this.state.colorId}`
 			)
 			.then((result) => {
 				this.setState({ cards: result.data });
@@ -70,7 +70,7 @@ class CardSelector extends Component {
 				if (this.state.pick < 31) {
 					axios
 						.get(
-							`${window.location.host}/api/v1/cards/random/?limit=${this.state.limit}&colorId=lte${this.state.colorId}`
+							`https://mtgpickr.herokuapp.com/api/v1/cards/random?limit=${this.state.limit}&colorId=lte${this.state.colorId}`
 						)
 						.then((result) => {
 							this.setState({ enabled: true });
