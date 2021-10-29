@@ -10,7 +10,7 @@ class CardSelector extends Component {
 			colorId: props.colorId,
 			cmc: props.cmc,
 			limit: parseInt(props.limit, 10),
-			pick: "Commander",
+			pick: "Leader",
 			commander: [],
 			cards: [],
 			list: {},
@@ -33,11 +33,15 @@ class CardSelector extends Component {
 			});
 	}
 
+	componentWillUnmount() {
+		this._isMounted = false;
+	}
+
 	handleClick(currentcard) {
 		if (this.state.enabled) {
 			this.setState({ enabled: false });
 			let state;
-			if (this.state.pick === "Commander")
+			if (this.state.pick === "Leader")
 				state = {
 					type: "",
 					colorId: currentcard.color_identity.join("") || "c",
@@ -67,7 +71,7 @@ class CardSelector extends Component {
 				};
 			}
 			this.setState(state, () => {
-				if (this.state.pick < 31) {
+				if (this.state.pick < 30) {
 					axios
 						.get(
 							`https://mtgpickr.herokuapp.com/api/v1/cards/random?limit=${this.state.limit}&colorId=lte${this.state.colorId}`
@@ -151,7 +155,6 @@ class CardSelector extends Component {
 							src={"data:image/jpg;base64," + currentcard.img}
 							alt={"image : " + currentcard.name}
 							className="img-fluid commander-card"
-							onClick={() => this.handleClick(currentcard)}
 						></img>
 						<span className="tooltip-content">
 							<img
@@ -168,9 +171,9 @@ class CardSelector extends Component {
 	render() {
 		return (
 			<div className="d-flex section align-items-center justify-content-center mb-auto">
-				<h1 className="row mb-auto">Pick : {this.state.pick} / 31</h1>
+				<h1 className="row mb-auto">{this.state.pick} / 30</h1>
 				<div className="mt-5 mb-5">{this.CardSelector()}</div>
-				<div className="d-flex">
+				<div className="d-flex cardlist">
 					{this.CardList()}
 					{this.Commander()}
 				</div>

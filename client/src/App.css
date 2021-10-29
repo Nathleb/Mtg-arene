@@ -1,18 +1,18 @@
 .big-card {
-	width: 100%;
 	max-width: 200px;
 	height: auto;
+	cursor: pointer;
 }
 
 .small-card {
-	width: 120px;
+	max-width: 120px;
 	height: auto;
 	margin-bottom: -150px;
 	object-fit: cover;
 }
 
 .commander-card {
-	width: 150px;
+	max-width: 150px;
 	height: auto;
 	margin-bottom: -150px;
 	object-fit: cover;
@@ -20,10 +20,50 @@
 }
 
 .commander-stack {
-	width: 150px;
+	max-width: 150px;
 }
 .stack {
-	width: 120px;
+	max-width: 120px;
+}
+
+.cardlist {
+	max-width: 100vw;
+	background-color: #3b393a;
+}
+
+.navbar {
+	width: 100vw
+}
+.myoverlay {
+	position: relative;
+}
+
+.gamemodebutton {
+	opacity: 1;
+	transition: 0.5s ease;
+	backface-visibility: hidden;
+	display: block;
+	max-width: 400px;
+}
+
+.overlay-content {
+	transition: 0.5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.myoverlay:hover .gamemodebutton {
+	filter: blur(5px) grayscale(100%) brightness(0.4);
+}
+
+.myoverlay:hover .overlay-content {
+	opacity: 1;
+	color: #e5d3da;
 }
 
 html,
@@ -44,7 +84,7 @@ body {
 	flex-direction: column;
 	height: 100%;
 	max-width: 80vw;
-	background-color: #3b393a;
+	background-color: #39393b;
 	color: #e5d3da;
 }
 

@@ -11,15 +11,17 @@ export default class GameModeButton extends Component {
 	}
 	render() {
 		return (
-			<Link to="/pick"
-				className="card mx-auto"
-				style={{ width: "30rem" }}
-			>
-				<img
-					src={`${process.env.PUBLIC_URL}/assets/${this.state.src}`}
-					alt={this.state.alt}
-					className="img-fluid"
-				></img>
+			<Link to="/pick" className="card mx-auto">
+				<div className="myoverlay">
+					<img
+						src={`${process.env.PUBLIC_URL}/assets/${this.state.src}`}
+						alt={this.state.alt}
+						className="img-fluid gamemodebutton"
+					></img>
+					<div className="overlay-content">
+						<h3>Start picking</h3>
+					</div>
+				</div>
 			</Link>
 		);
 	}
