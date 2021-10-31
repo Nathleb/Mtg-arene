@@ -2,6 +2,25 @@
 	max-width: 200px;
 	height: auto;
 	cursor: pointer;
+	border-radius: 10px;
+}
+
+.btn-primary {
+	background-color: #e5d3da !important;
+	color: #3b393a !important;
+	border: 2mm solid #3b393a !important;
+	box-shadow: none !important;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary:visited {
+	background-color: #b6adb0 !important;
+}
+
+.sticky-bottom {
+	position: relative;
 }
 
 .small-card {
@@ -9,6 +28,7 @@
 	height: auto;
 	margin-bottom: -150px;
 	object-fit: cover;
+	border-radius: 10px;
 }
 
 .commander-card {
@@ -17,6 +37,7 @@
 	margin-bottom: -150px;
 	object-fit: cover;
 	border: 4mm ridge #e5d3da;
+	border-radius: 10px;
 }
 
 .commander-stack {
@@ -32,7 +53,7 @@
 }
 
 .navbar {
-	width: 100vw
+	min-width: 100vw;
 }
 .myoverlay {
 	position: relative;
@@ -66,10 +87,10 @@
 	color: #e5d3da;
 }
 
-html,
 body {
-	height: 100%;
 	background-color: #3b393a;
+	display: flex;
+	overflow-x: hidden;
 }
 
 .main {
@@ -80,40 +101,36 @@ body {
 }
 
 .section {
+	max-width: 100vw;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	max-width: 80vw;
-	background-color: #39393b;
+	background-color: #3b393a;
 	color: #e5d3da;
 }
 
 .mytooltip {
-	display: inline;
 	position: relative;
-	overflow: auto;
 }
 
 .mytooltip .tooltip-content {
 	position: absolute;
 	z-index: 9999;
 	bottom: -600%;
-	left: 100%;
+	left: 50%;
 	opacity: 0;
 	pointer-events: none;
 }
 
 .mytooltip .tooltip-content::after {
-	content: "";
 	position: absolute;
 	pointer-events: none;
 }
 
 .mytooltip .tooltip-content img {
+	border-radius: 10px;
 	position: relative;
-	height: 400px;
-	display: block;
-	float: left;
+	max-height: 400px;
 }
 
 .mytooltip:hover .tooltip-content {
