@@ -72,7 +72,7 @@ class CardSelector extends Component {
 				};
 			}
 			this.setState(state, () => {
-				if (this.state.pick < 30) {
+				if (this.state.pick < 31) {
 					axios
 						.get(
 							`https://mtgpickr.herokuapp.com/api/v1/cards/random?limit=${this.state.limit}&colorId=lte${this.state.colorId}`
@@ -120,27 +120,39 @@ class CardSelector extends Component {
 		document.body.removeChild(element);
 	}
 
+	Counter() {
+		if (this.state.pick < 31 || this.state.pick === "Leader")
+			return <h1 className="row mb-auto">{this.state.pick} / 30</h1>;
+	}
+
 	CardSelector() {
-		if (this.state.pick < 30 || this.state.pick === "Leader") {
-			return this.state.cards.map((currentcard) => {
-				return (
-					<span className="mytooltip">
-						<img
-							key={currentcard._id}
-							src={"data:image/jpg;base64," + currentcard.img}
-							alt={"image : " + currentcard.name}
-							className="img-fluid big-card"
-							onClick={() => this.handleClick(currentcard)}
-						></img>
-						<span className="tooltip-content img-fluid">
+		if (this.state.pick < 31 || this.state.pick === "Leader") {
+			if (this._isMounted === true) {
+				return this.state.cards.map((currentcard) => {
+					return (
+						<span className="mytooltip">
 							<img
+								key={currentcard._id}
 								src={"data:image/jpg;base64," + currentcard.img}
-								alt={"image too : " + currentcard.name}
+								alt={"image : " + currentcard.name}
+								className="img-fluid big-card"
+								onClick={() => this.handleClick(currentcard)}
 							></img>
+							<span className="tooltip-content img-fluid">
+								<img
+									src={
+										"data:image/jpg;base64," +
+										currentcard.img
+									}
+									alt={"image too : " + currentcard.name}
+								></img>
+							</span>
 						</span>
-					</span>
-				);
-			});
+					);
+				});
+			} else {
+				return <div className="spinner-border" role="status"></div>;
+			}
 		}
 	}
 
@@ -202,7 +214,7 @@ class CardSelector extends Component {
 	}
 
 	DownloadButton() {
-		if (this.state.pick === 30)
+		if (this.state.pick === 31)
 			return (
 				<div className="sticky-bottom mt-5 mb-5">
 					<input
@@ -218,10 +230,10 @@ class CardSelector extends Component {
 	render() {
 		return (
 			<div className="d-flex section align-items-center justify-content-center mb-auto">
-				<h1 className="row mb-auto">{this.state.pick} / 30</h1>
+				<div>{this.Counter()}</div>
 				<div>{this.DownloadButton()}</div>
 				<div className="mt-5 mb-5">{this.CardSelector()}</div>
-				<div className="d-flex cardlist">
+				<div className="d-flex cardlist align-items-top justify-content-center">
 					{this.CardList()}
 					{this.Commander()}
 				</div>

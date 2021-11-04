@@ -43,8 +43,6 @@ router.patch("/pick/:id", async (req, res) => {
 		filter = { $inc: { total_proposed: 1, total_picked: 1 } };
 	} else if (req.query.picked === "false")
 		filter = { $inc: { total_proposed: 1 } };
-	// if (req.query.reset === "true")
-	// 	filter = { total_proposed: 0, total_picked: 0 };
 	Cards.findByIdAndUpdate(req.params.id, filter, (err, result) => {
 		if (err) throw err;
 		res.send(result);
