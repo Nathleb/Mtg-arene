@@ -8,8 +8,8 @@ export default class About extends Component {
 					<h1>About Mtgpickr</h1>
 					<p>
 						<br></br>
-						This website is meant to propose an alternative way to
-						play{" "}
+						This website is meant to propose an alternative way of
+						playing{" "}
 						<a
 							href="https://mtg.fandom.com/wiki/Limited"
 							target="_blank"
@@ -36,7 +36,7 @@ export default class About extends Component {
 						</a>{" "}
 						and adapted to fit Magic's mechanics.<br></br>
 						<br></br>
-						This website allow to export your card list in a format
+						This website allows to export your card list in a format
 						compatible with the great{" "}
 						<a
 							href="https://cockatrice.github.io/"
@@ -59,7 +59,7 @@ export default class About extends Component {
 				<div className="col mb-auto ms-5 me-5">
 					<h1>About me</h1>
 					<p>
-						<br></br>I am Nathan Le Bihan a young developer
+						<br></br>I am Nathan Le Bihan, a young developer
 						currently studying at 42 Paris. I have recently paused
 						my cursus in order to progress in web development with
 						the objective of{" "}
