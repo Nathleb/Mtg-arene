@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/controllers/routes/index.js"],"names":["cards","require"],"mappings":";;;;;;;AAAA,MAAMA,KAAK,GAAGC,OAAO,CAAC,YAAD,CAArB;;eAEe;AACdD,EAAAA;AADc,C","sourcesContent":["const cards = require(\"./cards.js\");\n\nexport default {\n\tcards,\n};\n"],"file":"index.js"}
