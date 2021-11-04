@@ -97,6 +97,9 @@ html {
 	background-color: #3b393a;
 	height: 100%;
 }
+.invi {
+	color: #3b393a;
+}
 
 body {
 	background-color: #3b393a;
@@ -129,6 +132,13 @@ body {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
+}
+
+.rules {
+	color: #e5d3da;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 a {

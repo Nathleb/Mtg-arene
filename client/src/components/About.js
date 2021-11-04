@@ -5,7 +5,7 @@ export default class About extends Component {
 		return (
 			<div className="about-text d-flex">
 				<div className="col me-5 mb-auto ms-5">
-					<h1>Mtgpickr</h1>
+					<h1>About Mtgpickr</h1>
 					<p>
 						<br></br>
 						This website is meant to propose an alternative way to
@@ -59,7 +59,22 @@ export default class About extends Component {
 				<div className="col mb-auto ms-5 me-5">
 					<h1>About me</h1>
 					<p>
+						<br></br>I am Nathan Le Bihan a young developer
+						currently studying at 42 Paris. I have recently paused
+						my cursus in order to progress in web development with
+						the objective of{" "}
+						<a
+							href="https://www.linkedin.com/in/nathan-le-bihan-596530126/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							finding a job
+						</a>{" "}
+						in this field.<br></br>
 						<br></br>
+						This is my first attempt at fully building a website. It
+						gave me the opportunity to learn about each element of
+						the MERN stack working on a subject I love (Magic).
 					</p>
 				</div>
 			</div>
