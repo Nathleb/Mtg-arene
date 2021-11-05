@@ -30,27 +30,27 @@
 }
 
 .small-card {
-	max-width: 8vw;
+	width: 8vw;
 	height: auto;
-	margin-bottom: -12vw;
+	margin-bottom: -9.7vw;
 	object-fit: cover;
 	border-radius: 10px;
 }
 
 .commander-card {
-	max-width: 8vw;
+	width: 8vw;
 	height: auto;
-	margin-bottom: -12vw;
+	margin-bottom: -9.7vw;
 	object-fit: cover;
 	border: 2mm ridge goldenrod;
 	border-radius: 10px;
 }
 
 .commander-stack {
-	max-width: 8vw;
+	width: 8vw;
 }
 .stack {
-	max-width: 8vw;
+	width: 8vw;
 }
 
 .cardlist {
@@ -96,9 +96,6 @@
 html {
 	background-color: #3b393a;
 	height: 100%;
-}
-.invi {
-	color: #3b393a;
 }
 
 body {

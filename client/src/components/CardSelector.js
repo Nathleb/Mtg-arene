@@ -14,6 +14,7 @@ class CardSelector extends Component {
 			commander: [],
 			cards: [],
 			list: {},
+			nbrPick: 45,
 			enabled: true,
 		};
 		this.handleClick = this.handleClick.bind(this);
@@ -72,7 +73,7 @@ class CardSelector extends Component {
 				};
 			}
 			this.setState(state, () => {
-				if (this.state.pick < 31) {
+				if (this.state.pick < this.state.nbrPick + 1) {
 					axios
 						.get(
 							`https://mtgpickr.herokuapp.com/api/v1/cards/random?limit=${this.state.limit}&colorId=lte${this.state.colorId}`
@@ -104,29 +105,39 @@ class CardSelector extends Component {
 			acc = `${acc} ${list[curr]} ${curr}\n`;
 			return acc;
 		}, "");
-		let filename = `${this.state.commander[0].name} Deck`;
+		let filename = `${this.state.commander[0].name} Deck.txt`.replace(
+			/\s/g,
+			""
+		);
 		var element = document.createElement("a");
 		element.setAttribute(
 			"href",
 			"data:text/plain;charset=utf-8," + encodeURIComponent(text)
 		);
 		element.setAttribute("download", filename);
-
 		element.style.display = "none";
 		document.body.appendChild(element);
-
 		element.click();
-
 		document.body.removeChild(element);
 	}
 
 	Counter() {
-		if (this.state.pick < 31 || this.state.pick === "Leader")
-			return <h1 className="row mb-auto">{this.state.pick} / 30</h1>;
+		if (
+			this.state.pick < this.state.nbrPick + 1 ||
+			this.state.pick === "Leader"
+		)
+			return (
+				<h1 className="row mb-auto">
+					{this.state.pick} / {this.state.nbrPick}
+				</h1>
+			);
 	}
 
 	CardSelector() {
-		if (this.state.pick < 31 || this.state.pick === "Leader") {
+		if (
+			this.state.pick < this.state.nbrPick + 1 ||
+			this.state.pick === "Leader"
+		) {
 			if (this._isMounted === true) {
 				return this.state.cards.map((currentcard) => {
 					return (
@@ -214,7 +225,7 @@ class CardSelector extends Component {
 	}
 
 	DownloadButton() {
-		if (this.state.pick === 31)
+		if (this.state.pick === this.state.nbrPick + 1)
 			return (
 				<div className="sticky-bottom mt-5 mb-5">
 					<input
