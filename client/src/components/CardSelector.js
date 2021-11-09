@@ -319,17 +319,30 @@ class CardSelector extends Component {
 		let list = Object.values(this.state.list).reduce((acc, curr) => {
 			return [...acc, ...curr];
 		}, []);
-		list = [...list, ...this.state.commander];
+		let sideboard = this.state.sideboard.reduce((acc, curr) => {
+			let name = curr.name;
+			if (acc[name]) acc[name]++;
+			else acc[name] = 1;
+			return acc;
+		}, {});
 		list = list.reduce((acc, curr) => {
 			if (acc[curr.name]) acc[curr.name]++;
 			else acc[curr.name] = 1;
 			return acc;
 		}, {});
+
 		list = { ...list, ...this.state.basiclands };
 		let text = Object.keys(list).reduce((acc, curr) => {
 			if (list[curr]) acc = `${acc} ${list[curr]} ${curr}\n`;
 			return acc;
 		}, "");
+		text =
+			text +
+			Object.keys(sideboard).reduce((acc, curr) => {
+				if (sideboard[curr])
+					acc = `${acc}SB: ${sideboard[curr]} ${curr}\n`;
+				return acc;
+			}, "");
 		let filename = `${this.state.commander[0].name} Deck.txt`.replace(
 			/\s/g,
 			""
