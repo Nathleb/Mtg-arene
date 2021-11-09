@@ -333,13 +333,13 @@ class CardSelector extends Component {
 
 		list = { ...list, ...this.state.basiclands };
 		let text = Object.keys(list).reduce((acc, curr) => {
-			if (list[curr]) acc = `${acc} ${list[curr]} ${curr}\n`;
+			if (list[curr] > 0) acc = `${acc} ${list[curr]} ${curr}\n`;
 			return acc;
 		}, "");
 		text =
 			text +
 			Object.keys(sideboard).reduce((acc, curr) => {
-				if (sideboard[curr])
+				if (sideboard[curr] > 0)
 					acc = `${acc}SB: ${sideboard[curr]} ${curr}\n`;
 				return acc;
 			}, "");
