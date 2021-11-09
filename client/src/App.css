@@ -4,6 +4,17 @@
 	box-sizing: content-box;
 }
 
+.basiclandcounter {
+	width: 6vw;
+	display: flex;
+	flex-direction: row;
+}
+.mana-symbol {
+	width: 2vw;
+	height: auto;
+	object-fit: scale-down;
+}
+
 .big-card {
 	max-width: 12vw;
 	height: auto;
