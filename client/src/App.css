@@ -1,3 +1,10 @@
+:root {
+	--main-color: #e9e8e8;
+	--main-color-dark: #b6adb0;
+	--bg-color: #3b393a;
+	--secondary-color: rgb(161, 9, 60);
+}
+
 *,
 *::after,
 *::before {
@@ -17,15 +24,15 @@
 .stack-label {
 	text-align: center;
 	font-size: 2vh;
-	background-color: #e5d3da;
-	color: #3b393a;
+	background-color: var(--main-color);
+	color: var(--bg-color);
 	border-radius: 25px;
 }
 
 .dashboard {
 	text-align: left;
 	font-size: 2vh;
-	border: 2mm ridge rgb(161, 9, 60);
+	border: 2mm ridge var(--secondary-color);
 }
 .big-card {
 	max-width: 12vw;
@@ -35,9 +42,9 @@
 }
 
 .btn-primary {
-	background-color: #e5d3da !important;
-	color: #3b393a !important;
-	border: 2mm solid #3b393a !important;
+	background-color: var(--main-color) !important;
+	color: var(--bg-color) !important;
+	border: 2mm solid var(--bg-color) !important;
 	box-shadow: none !important;
 }
 
@@ -45,7 +52,7 @@
 .btn-primary:active,
 .btn-primary.active,
 .btn-primary:visited {
-	background-color: #b6adb0 !important;
+	background-color: var(--main-color-dark) !important;
 }
 
 .sticky-bottom {
@@ -65,7 +72,6 @@
 	height: auto;
 	margin-bottom: -9.7vw;
 	object-fit: cover;
-	border: 2mm ridge goldenrod;
 	border-radius: 10px;
 }
 
@@ -80,8 +86,8 @@
 	display: flex;
 	min-width: 100vw;
 	height: 100%;
-	background-color: #3b393a;
-	border-top: 4mm ridge rgb(161, 9, 60);
+	background-color: var(--bg-color);
+	border-top: 4mm ridge var(--secondary-color);
 }
 
 .myoverlay {
@@ -113,16 +119,16 @@
 
 .myoverlay:hover .overlay-content {
 	opacity: 1;
-	color: #e5d3da;
+	color: var(--main-color);
 }
 
 html {
-	background-color: #3b393a;
+	background-color: var(--bg-color);
 	height: 100%;
 }
 
 body {
-	background-color: #3b393a;
+	background-color: var(--bg-color);
 	overflow-x: hidden;
 	display: flex;
 	height: 100%;
@@ -132,7 +138,7 @@ body {
 	display: flex;
 	flex-flow: column;
 	flex-direction: column;
-	background-color: #3b393a;
+	background-color: var(--bg-color);
 	min-height: calc(100% - 19vh);
 }
 
@@ -142,32 +148,32 @@ body {
 	width: 100vw;
 }
 .about-button {
-	background-color: #3b393a;
-	color: #e5d3da;
+	background-color: var(--bg-color);
+	color: var(--main-color);
 	border-radius: 25px;
 }
 
 .about-text {
-	color: #e5d3da;
+	color: var(--main-color);
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 }
 
 .rules {
-	color: #e5d3da;
+	color: var(--main-color);
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
 
 a {
-	color: #e5d3da;
+	color: var(--main-color);
 }
 
 a:hover,
 a:active {
-	color: #b45283;
+	color: var(--secondary-color);
 }
 
 p {
@@ -176,12 +182,12 @@ p {
 
 .about-button:hover,
 .about-button:active {
-	background-color: #3b393a !important;
-	color: #b45283;
+	background-color: var(--bg-color) !important;
+	color: var(--secondary-color);
 }
 
 .navbar {
-	background-color: #e5d3da;
+	background-color: var(--main-color);
 	height: 15vh;
 	min-width: 100vw;
 }
@@ -196,8 +202,8 @@ p {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	background-color: #3b393a;
-	color: #e5d3da;
+	background-color: var(--bg-color);
+	color: var(--main-color);
 }
 
 .mytooltip {
