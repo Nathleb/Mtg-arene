@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { PieChart } from "react-minimal-pie-chart";
 
 class CardSelector extends Component {
 	_isMounted = false;
@@ -31,6 +32,7 @@ class CardSelector extends Component {
 		this.downloadList = this.downloadList.bind(this);
 		this.handleCounterChange = this.handleCounterChange.bind(this);
 		this.countType = this.countType.bind(this);
+		this.countdataColors = this.countdataColors.bind(this);
 	}
 
 	/* Make the first request to the API*/
@@ -296,8 +298,6 @@ class CardSelector extends Component {
 				acc +
 				stack.reduce((acc, card) => {
 					let regex = new RegExp(type, "i");
-					console.log(regex.test(card.type_line));
-
 					if (regex.test(card.type_line)) {
 						return acc + 1;
 					}
@@ -307,25 +307,73 @@ class CardSelector extends Component {
 		}, 0);
 	}
 
+	countdataColors() {
+		let list = Object.values(this.state.list).reduce((acc, stack) => {
+			acc = [...acc, ...stack];
+			return acc;
+		}, []);
+
+		list = list.reduce(
+			(acc, card) => {
+				if (card.color_identity.length === 0) acc["C"].value++;
+				else {
+					card.color_identity.map((color) => {
+						acc[color[0]].value++;
+						return acc;
+					});
+				}
+				return acc;
+			},
+			{
+				G: { title: "G", value: 0, color: "#a5d2b1" },
+				W: { title: "W", value: 0, color: "#fffbd7" },
+				U: { title: "U", value: 0, color: "#b2e0f9" },
+				R: { title: "R", value: 0, color: "#f2ae91" },
+				B: { title: "B", value: 0, color: "#cbc3c0" },
+				C: { title: "C", value: 0, color: "#ffffff" },
+			}
+		);
+
+		return Object.values(list).reduce((acc, curr) => {
+			if (curr.value > 0) acc.push(curr);
+			return acc;
+		}, []);
+	}
+
 	Dashboard() {
 		return (
-			<div className="me-5 mt-5 ">
-				<p className="dashboard p-3">
-					Creatures : {this.countType("creature")}
-					<br></br>
-					Sorceries : {this.countType("sorcery")}
-					<br></br>
-					Instants : {this.countType("instant")}
-					<br></br>
-					Artifacts : {this.countType("artifact")}
-					<br></br>
-					Enchantments : {this.countType("enchantment")}
-					<br></br>
-					Planeswalkers : {this.countType("planeswalker")}
-					<br></br>
-					Lands : {this.countType("land")}
-					<br></br>
-				</p>
+			<div className="me-5 mt-3 ">
+				<div className="dashboard">
+					<PieChart
+						className="dashboard-piechart"
+						data={this.countdataColors()}
+						startAngle={180}
+						lengthAngle={180}
+						label={({ dataEntry }) =>
+							Math.round(dataEntry.percentage) + "%"
+						}
+						labelStyle={(index) => ({
+							fill: "#000000",
+							fontSize: "0.5em",
+						})}
+					/>
+					<p className="dashboard-text p-3">
+						Creatures : {this.countType("creature")}
+						<br></br>
+						Sorceries : {this.countType("sorcery")}
+						<br></br>
+						Instants : {this.countType("instant")}
+						<br></br>
+						Artifacts : {this.countType("artifact")}
+						<br></br>
+						Enchantments : {this.countType("enchantment")}
+						<br></br>
+						Planeswalkers : {this.countType("planeswalker")}
+						<br></br>
+						Lands : {this.countType("land")}
+						<br></br>
+					</p>
+				</div>
 			</div>
 		);
 	}

@@ -1,8 +1,8 @@
 :root {
-	--main-color: #e9e8e8;
+	--main-color: #e8e8e8;
 	--main-color-dark: #b6adb0;
 	--bg-color: #3b393a;
-	--secondary-color: rgb(161, 9, 60);
+	--secondary-color: #a1093c;
 }
 
 *,
@@ -21,6 +21,23 @@
 	height: auto;
 	object-fit: scale-down;
 }
+
+.dashboard {
+	max-width: 12vw;
+	display: flex;
+	flex-direction: column;
+}
+
+.dashboard-text {
+	text-align: left;
+	font-size: 1vw;
+	border: 2mm ridge var(--secondary-color);
+}
+.dashboard .dashboard-piechart {
+	position: relative;
+	margin-block-end: -50%;
+	max-width: 12vw;
+}
 .stack-label {
 	text-align: center;
 	font-size: 2vh;
@@ -29,11 +46,6 @@
 	border-radius: 25px;
 }
 
-.dashboard {
-	text-align: left;
-	font-size: 2vh;
-	border: 2mm ridge var(--secondary-color);
-}
 .big-card {
 	max-width: 12vw;
 	height: auto;
@@ -44,7 +56,7 @@
 .btn-primary {
 	background-color: var(--main-color) !important;
 	color: var(--bg-color) !important;
-	border: 2mm solid var(--bg-color) !important;
+	border: 1vh solid var(--bg-color) !important;
 	box-shadow: none !important;
 }
 
@@ -62,7 +74,7 @@
 .small-card {
 	width: 8vw;
 	height: auto;
-	margin-bottom: -9.7vw;
+	margin-block-end: -10vw;
 	object-fit: cover;
 	border-radius: 10px;
 }
@@ -70,7 +82,7 @@
 .commander-card {
 	width: 8vw;
 	height: auto;
-	margin-bottom: -9.7vw;
+	margin-block-end: -10vw;
 	object-fit: cover;
 	border-radius: 10px;
 }
@@ -87,7 +99,7 @@
 	min-width: 100vw;
 	height: 100%;
 	background-color: var(--bg-color);
-	border-top: 4mm ridge var(--secondary-color);
+	border-top: 2vh ridge var(--secondary-color);
 }
 
 .myoverlay {
@@ -191,6 +203,7 @@ p {
 	height: 15vh;
 	min-width: 100vw;
 }
+
 .img-fluid-height {
 	max-height: 100%;
 	width: auto;
@@ -227,7 +240,7 @@ p {
 .mytooltip .tooltip-content img {
 	border-radius: 10px;
 	position: relative;
-	max-height: 400px;
+	max-height: 50vh;
 }
 
 .mytooltip:hover .tooltip-content {

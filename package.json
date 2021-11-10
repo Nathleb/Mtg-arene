@@ -31,6 +31,7 @@
     "mongoose": "^6.0.7",
     "mongoose-simple-random": "^0.4.1",
     "pg": "^8.7.1",
+    "react-minimal-pie-chart": "^8.2.0",
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.2.0"
   },
