@@ -13,7 +13,7 @@ class CardSelector extends Component {
 			pick: "Leader",
 			commander: [],
 			cards: [],
-			list: {},
+			list: { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] },
 			sideboard: [],
 			basiclands: {
 				plains: 0,
@@ -30,6 +30,7 @@ class CardSelector extends Component {
 			this.addToDecklistFromCardSelector.bind(this);
 		this.downloadList = this.downloadList.bind(this);
 		this.handleCounterChange = this.handleCounterChange.bind(this);
+		this.countType = this.countType.bind(this);
 	}
 
 	/* Make the first request to the API*/
@@ -154,7 +155,6 @@ class CardSelector extends Component {
 		if (index > -1) {
 			list[cmc].splice(index, 1);
 		}
-		if (list[cmc].length === 0) delete list[cmc];
 		sideboard.sort((a, b) => {
 			return a.name.localeCompare(b.name);
 		});
@@ -170,11 +170,12 @@ class CardSelector extends Component {
 	}
 
 	CardList() {
-		let arrayCmc = Object.values(this.state.list);
-		return arrayCmc.map((cmclist) => {
+		let stacks = Object.values(this.state.list);
+		return stacks.map((stack) => {
 			return (
 				<div className="stack">
-					{cmclist.map((currentcard) => {
+					<p className="stack-label">{stack.length}</p>
+					{stack.map((currentcard) => {
 						return (
 							<span className="mytooltip">
 								<img
@@ -257,6 +258,7 @@ class CardSelector extends Component {
 	Sideboard() {
 		return (
 			<div className="stack ms-5">
+				<p className="stack-label">Sideboard</p>
 				{this.state.sideboard.map((currentcard) => {
 					return (
 						<span className="mytooltip">
@@ -283,6 +285,47 @@ class CardSelector extends Component {
 						</span>
 					);
 				})}
+			</div>
+		);
+	}
+
+	/* TABLEAU DE BORD */
+	countType(type) {
+		return Object.values(this.state.list).reduce((acc, stack) => {
+			return (
+				acc +
+				stack.reduce((acc, card) => {
+					let regex = new RegExp(type, "i");
+					console.log(regex.test(card.type_line));
+
+					if (regex.test(card.type_line)) {
+						return acc + 1;
+					}
+					return acc;
+				}, 0)
+			);
+		}, 0);
+	}
+
+	Dashboard() {
+		return (
+			<div className="me-5 mt-5 ">
+				<p className="dashboard p-3">
+					Creatures : {this.countType("creature")}
+					<br></br>
+					Sorceries : {this.countType("sorcery")}
+					<br></br>
+					Instants : {this.countType("instant")}
+					<br></br>
+					Artifacts : {this.countType("artifact")}
+					<br></br>
+					Enchantments : {this.countType("enchantment")}
+					<br></br>
+					Planeswalkers : {this.countType("planeswalker")}
+					<br></br>
+					Lands : {this.countType("land")}
+					<br></br>
+				</p>
 			</div>
 		);
 	}
@@ -476,6 +519,7 @@ class CardSelector extends Component {
 				<div>{this.BasicLandCounter()}</div>
 				<div className="mt-5 mb-5">{this.CardSelector()}</div>
 				<div className="d-flex cardlist align-items-top justify-content-center">
+					{this.Dashboard()}
 					{this.CardList()}
 					{/* 				{this.Commander()} */}
 					{this.Sideboard()}
