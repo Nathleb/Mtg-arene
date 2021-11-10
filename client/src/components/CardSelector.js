@@ -315,12 +315,15 @@ class CardSelector extends Component {
 
 		list = list.reduce(
 			(acc, card) => {
-				if (card.color_identity.length === 0) acc["C"].value++;
-				else {
-					card.color_identity.map((color) => {
-						acc[color[0]].value++;
-						return acc;
-					});
+				let regex = new RegExp("land", "i");
+				if (!regex.test(card.type_line)) {
+					if (card.color_identity.length === 0) acc["C"].value++;
+					else {
+						card.color_identity.map((color) => {
+							acc[color[0]].value++;
+							return acc;
+						});
+					}
 				}
 				return acc;
 			},
