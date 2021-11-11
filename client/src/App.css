@@ -89,7 +89,7 @@
 	height: auto;
 	margin-block-end: -10vw;
 	object-fit: cover;
-	border-radius: 10px;
+	border-radius: 5%;
 }
 
 .commander-card {
@@ -97,7 +97,7 @@
 	height: auto;
 	margin-block-end: -10vw;
 	object-fit: cover;
-	border-radius: 10px;
+	border-radius: 5%;
 }
 
 .commander-stack {
@@ -236,7 +236,7 @@ p {
 	position: relative;
 }
 
-.mytooltip .tooltip-content {
+.mytooltip .tooltip-content-right {
 	position: absolute;
 	z-index: 9999;
 	bottom: -600%;
@@ -245,17 +245,29 @@ p {
 	pointer-events: none;
 }
 
-.mytooltip .tooltip-content::after {
+.mytooltip .tooltip-content-left {
+	position: absolute;
+	z-index: 9999;
+	bottom: -600%;
+	right: 50%;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.mytooltip .tooltip-content-right::after,
+.mytooltip .tooltip-content-left::after {
 	position: absolute;
 	pointer-events: none;
 }
 
-.mytooltip .tooltip-content img {
-	border-radius: 10px;
+.mytooltip .tooltip-content-right img,
+.mytooltip .tooltip-content-left img {
+	border-radius: 5%;
 	position: relative;
 	max-height: 50vh;
 }
 
-.mytooltip:hover .tooltip-content {
+.mytooltip:hover .tooltip-content-right,
+.mytooltip:hover .tooltip-content-left {
 	opacity: 1;
 }

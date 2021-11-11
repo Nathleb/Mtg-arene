@@ -128,7 +128,7 @@ class CardSelector extends Component {
 									)
 								}
 							></img>
-							<span className="tooltip-content img-fluid">
+							<span className="tooltip-content-right img-fluid">
 								<img
 									src={
 										"data:image/jpg;base64," +
@@ -192,7 +192,7 @@ class CardSelector extends Component {
 										this.addToSideBoard(currentcard)
 									}
 								></img>
-								<span className="tooltip-content">
+								<span className="tooltip-content-right">
 									<img
 										src={
 											"data:image/jpg;base64," +
@@ -220,7 +220,7 @@ class CardSelector extends Component {
 							alt={"image : " + currentcard.name}
 							className="img-fluid commander-card"
 						></img>
-						<span className="tooltip-content img-fluid">
+						<span className="tooltip-content-right img-fluid">
 							<img
 								src={"data:image/jpg;base64," + currentcard.img}
 								alt={"image too : " + currentcard.name}
@@ -260,7 +260,9 @@ class CardSelector extends Component {
 	Sideboard() {
 		return (
 			<div className="stack ms-5">
-				<p className="stack-label">Sideboard</p>
+				<p className="stack-label">
+					Sideboard: {this.state.sideboard.length}
+				</p>
 				{this.state.sideboard.map((currentcard) => {
 					return (
 						<span className="mytooltip">
@@ -275,7 +277,7 @@ class CardSelector extends Component {
 									)
 								}
 							></img>
-							<span className="tooltip-content">
+							<span className="tooltip-content-left">
 								<img
 									src={
 										"data:image/jpg;base64," +
@@ -361,6 +363,8 @@ class CardSelector extends Component {
 						})}
 					/>
 					<p className="dashboard-text p-3">
+						<h4>Total : {this.countType("")}</h4>
+						<br></br>
 						Creatures : {this.countType("creature")}
 						<br></br>
 						Sorceries : {this.countType("sorcery")}
